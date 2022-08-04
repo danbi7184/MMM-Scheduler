@@ -1,0 +1,9 @@
+.myContent {
+	color: red;
+	border-bottom: 1px solid;
+	font-weight: 600;
+    font-size: 150%;
+	text-align: right;
+    margin-right: 5%;
+	background-color: yellow;
+}
