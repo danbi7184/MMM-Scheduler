@@ -1,4 +1,4 @@
-Module.register("calendar_monthly", {
+Module.register("MMM-Scheduler", {
 	requiresVersion: "2.2.0",
 defaults: {
 	initialLoadDelay:	0,		
