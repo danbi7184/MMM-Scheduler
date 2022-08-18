@@ -1,8 +1,9 @@
  #calendar-table {
 	display: table;
 	width: 900px;
-	height: 1000px;
+	height: 800px;
 	padding-right: 3px;
+	padding-top: 50px;
 }
 
 #calendar-th {
