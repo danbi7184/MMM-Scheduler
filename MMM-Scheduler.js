@@ -9,6 +9,10 @@ getStyles: function() {
 	return [this.data.path + "/css/MMM-Scheduler.css", "/css/MMM-Scheduler2.css"];
 },
 
+getThemeCss: function() {
+		return "/css/MMM-Scheduler2.css";
+},	
+	
 getScripts: function() {
 	return ["moment.js"];
 },
