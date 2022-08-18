@@ -6,7 +6,7 @@ defaults: {
 },
 
 getStyles: function() {
-	return [this.data.path + "/css/MMM-Scheduler.css", "/css/MMM-Scheduler2.css"];
+	return [this.data.path + "/css/MMM-Scheduler.css", this.getThemeCss()];
 },
 
 getThemeCss: function() {
