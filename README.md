@@ -1,6 +1,5 @@
 # MMM-Scheduler
-
-
+Magic Mirror Scheduler Module
 ### Install & Configuration ###
 ___
     cd ~/MagicMirror/modules
