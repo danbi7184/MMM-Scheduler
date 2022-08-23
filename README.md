@@ -9,7 +9,7 @@ ___
 
 
 ### ScreenShot ###
-![MMM-Scheduler](https://user-images.githubusercontent.com/95270524/185603023-afa83da1-02f2-47cb-a6fd-fe5e6148d0e5.png)
+![ScreenShot-Schduler](https://user-images.githubusercontent.com/95270524/186213256-54a89a6b-0999-4815-8bec-8a41e965b2e9.png)
 
 
 ### Using the module ###
