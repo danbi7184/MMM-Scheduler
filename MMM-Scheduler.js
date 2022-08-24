@@ -73,25 +73,7 @@ getDom: function() {
 		
 		header.appendChild(headerTR);
 		wrapper.appendChild(header);
-
-		// TFOOT섹션 생성
-		var footer = document.createElement('tFoot');
-		var footerTR = document.createElement("tr");
-		footerTR.id = "calendar-tf";
-
-		var footerTD = document.createElement("td");
-		footerTD.colSpan ="7";
-		footerTD.className = "footer";
-		if (this.config.debugging) {
-			footerTD.innerHTML = "Calendar currently in DEBUG mode!<br />Please see console log.";
-		} else {
-			footerTD.innerHTML = "&nbsp;";
-		}
-
-		footerTR.appendChild(footerTD);
-		footer.appendChild(footerTR);
-		wrapper.appendChild(footer);
-
+		
 		// 요일 이름으로 TBODY 섹션 생성
 		var bodyContent = document.createElement("tBody");
 		var bodyTR = document.createElement("tr");
