@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "firebase": "^9.10.0",
+    "firebase-admin": "^11.0.1"
+  },
+  "name": "mmm-scheduler",
+  "description": "Magic Mirror Scheduler Module\r ### Install & Configuration ###\r ___\r     cd ~/MagicMirror/modules\r     git clone https://github.com/jun01270/MMM-Scheduler.git\r     cd MMM-Scheduler\r     npm install",
+  "version": "1.0.0",
+  "main": "MMM-Scheduler.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jun01270/MMM-Scheduler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jun01270/MMM-Scheduler/issues"
+  },
+  "homepage": "https://github.com/jun01270/MMM-Scheduler#readme"
+}
