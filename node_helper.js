@@ -13,9 +13,9 @@ module.exports = NodeHelper.create({
 				credential: admin.credential.cert(serviceAccount),
 				databaseURL: "https://scheduler-app-df3b5-default-rtdb.asia-southeast1.firebasedatabase.app"
 			  });
-		    db = admin.database();
 		}  catch(error) {
 		}
+		db = admin.database();
 	},
 
 	socketNotificationReceived: function(notification, payload) {
@@ -28,17 +28,18 @@ module.exports = NodeHelper.create({
 
 	getSchedule: async function() {
 		let self = this;
-		var title = Array();
-		var date = Array();
-		var startTime = Array();
-		
-		var i=0;
 
 		var ref = db.ref("CalendarList");
-		ref.on('value', function(snapshot) {
+		ref.on("value", function(snapshot) {
 			var val = snapshot.val();
 			var key = Object.keys(val);
 			var value = Object.values(val);
+
+			var title = Array();
+			var date = Array();
+			var startTime = Array();
+			
+			var i=0;
 
 			for(var k=0; k<key.length; k++) {
 				var length = value[k].length;
@@ -50,7 +51,7 @@ module.exports = NodeHelper.create({
 						i++;
 					}
 				}
-			}
+			  }
 		});		
 		console.log(date);
 
