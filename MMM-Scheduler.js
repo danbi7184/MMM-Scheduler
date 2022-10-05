@@ -212,7 +212,7 @@ reloadDom: function() {
 	this.scheduleUpdate(nextRefresh);
 },
 
-getSchedule: function() {
+getScheduleList: function() {
 	Log.info("Requesting schedule");
 	this.sendSocketNotification("GET_SCHEDULE");
 },
@@ -220,9 +220,9 @@ getSchedule: function() {
 notificationReceived: function(notification, payload) {
 	switch (notification) {
 		case "DOM_OBJECTS_CREATED":
-			this.getSchedule();
+			this.getScheduleList();
 			var timer = setInterval(() => {
-				this.getSchedule();
+				this.getScheduleList();
 			}, 60000);
 			break;
 	}
@@ -232,9 +232,9 @@ socketNotificationReceived: function(notification, payload) {
 	switch (notification) {
 		case "SCHEDULE":
 			console.log("NotificationReceived:" + notification);
-			this.titleList = payload.Title;
-			this.dateList = payload.Date;
-			this.startTimeList = payload.StartTime;
+			this.titleList = payload.title;
+			this.dateList = payload.date;
+			this.startTimeList = payload.startTime;
 			this.updateDom();
 			break;
 	}
