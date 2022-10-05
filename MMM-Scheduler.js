@@ -212,6 +212,22 @@ reloadDom: function() {
 	this.scheduleUpdate(nextRefresh);
 },
 
+getSchedule: function() {
+	Log.info("Requesting schedule");
+	this.sendSocketNotification("GET_SCHEDULE");
+},
+
+notificationReceived: function(notification, payload) {
+	switch (notification) {
+		case "DOM_OBJECTS_CREATED":
+			this.getSchedule();
+			var timer = setInterval(() => {
+				this.getSchedule();
+			}, 60000);
+			break;
+	}
+},
+
 socketNotificationReceived: function(notification, payload) {
 	switch (notification) {
 		case "SCHEDULE":
