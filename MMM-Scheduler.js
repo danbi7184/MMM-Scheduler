@@ -19,9 +19,6 @@ getScripts: function() {
 
 start: function() {
 	Log.log("Starting module: " + this.name);
-	this.titleList = [];
-	this.dateList = [];
-	this.startTimeList = [];
 	// 지역 설정
 	moment.locale(config.language);
 	
