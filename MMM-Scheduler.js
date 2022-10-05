@@ -135,7 +135,7 @@ getDom: function() {
 					else
 						var zeroDay = day; 
 					var date = year + '-' + zeroMonth + '-' + zeroDay;
-					content.innerHTML = this.titleList;
+					content.innerHTML = this.titleList[0];
 					day++;
 				} else if (day > monthLength && i > 0) {
 					// 마지막 행, 빈 공간 채우기
@@ -216,7 +216,7 @@ socketNotificationReceived: function(notification, payload) {
 	switch (notification) {
 		case "SCHEDULE":
 			console.log("NotificationReceived:" + notification);
-			this.titleList = payload.Title[0];
+			this.titleList = payload.Title;
 			this.dateList = payload.Date;
 			this.startTimeList = payload.StartTime;
 			this.updateDom();
