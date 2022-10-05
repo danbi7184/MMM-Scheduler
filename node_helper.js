@@ -56,14 +56,14 @@ module.exports = NodeHelper.create({
 
 		self.sendSocketNotification("SCHEDULE", 
 			{
-				"Title": title,
-				"Date": date,
-				"Value": value
+				"title": title,
+				"date": date,
+				"value": value
 			}	
 		);
 	},
 
-	stop: function() {
-		db.ref("CalendarList").off();
-	}
+	//stop: function() {
+		//db.ref("CalendarList").off();
+	//}
 });
