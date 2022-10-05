@@ -135,7 +135,7 @@ getDom: function() {
 					else
 						var zeroDay = day; 
 					var date = year + '-' + zeroMonth + '-' + zeroDay;
-					content.innerHTML = this.title[3];
+					content.innerHTML = this.titleList[3];
 					day++;
 				} else if (day > monthLength && i > 0) {
 					// 마지막 행, 빈 공간 채우기
