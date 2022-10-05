@@ -63,7 +63,7 @@ module.exports = NodeHelper.create({
 		);
 	},
 
-	//stop: function() {
-		//db.ref("CalendarList").off();
-	//}
+	stop: function() {
+		db.ref("CalendarList").off();
+	}
 });
