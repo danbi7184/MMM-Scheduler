@@ -111,6 +111,7 @@ getDom: function() {
 				squareContent.className = "square-content";
 				var squareContentInner = document.createElement("div");
 				var innerSpan = document.createElement("span");
+				var content = document.createElement("div");
 
 				if (j < startingDay && i == 0) {
 					//첫 번째 행, 빈 슬롯 채우기
@@ -134,8 +135,7 @@ getDom: function() {
 					else
 						var zeroDay = day; 
 					var date = year + '-' + zeroMonth + '-' + zeroDay;
-					console.log(date);
-					console.log(this.titleList[3]);
+					content.innerHTML = this.title[3];
 					day++;
 				} else if (day > monthLength && i > 0) {
 					// 마지막 행, 빈 공간 채우기
@@ -144,6 +144,7 @@ getDom: function() {
 					nextMonth++;
 				}
 				squareContentInner.appendChild(innerSpan);
+				squareContentInner.appendChild(content);
 				squareContent.appendChild(squareContentInner);
 				squareDiv.appendChild(squareContent);
 				bodyTD.appendChild(squareDiv);	
