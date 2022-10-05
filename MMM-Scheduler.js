@@ -19,6 +19,9 @@ getScripts: function() {
 
 start: function() {
 	Log.log("Starting module: " + this.name);
+	this.titleList = [];
+	this.dateList = [];
+	this.startTimeList = [];
 	// 지역 설정
 	moment.locale(config.language);
 	
@@ -122,6 +125,17 @@ getDom: function() {
 						innerSpan.className = "daily";
 					}
 					innerSpan.innerHTML = day;
+					if(month < 10) 
+						var zeroMonth = '0' + month;
+					else 
+						var zeroMonth = month;
+					if(day < 10)
+						var zeroDay = '0' + day;
+					else
+						var zeroDay = day; 
+					var date = year + '-' + zeroMonth + '-' + zeroDay;
+					console.log(date);
+					console.log(this.titleList[3]);
 					day++;
 				} else if (day > monthLength && i > 0) {
 					// 마지막 행, 빈 공간 채우기
@@ -195,6 +209,18 @@ reloadDom: function() {
 
 	var nextRefresh = moment([now.year(), now.month(), now.date(), now.hour() + 1]);
 	this.scheduleUpdate(nextRefresh);
+},
+
+socketNotificationReceived: function(notification, payload) {
+	switch (notification) {
+		case "SCHEDULE":
+			console.log("NotificationReceived:" + notification);
+			this.titleList = payload.title;
+			this.dateList = payload.date;
+			this.startTimeList = payload.startTime;
+			this.updateDom();
+			break;
+	}
 }
 
 });

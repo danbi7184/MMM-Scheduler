@@ -1,6 +1,5 @@
 const NodeHelper = require("node_helper");
 const admin = require("firebase-admin");
-const firestore = require("firebase-admin/firestore");
 
 const serviceAccount = require("./ServiceAccount.json");
 
@@ -11,11 +10,12 @@ module.exports = NodeHelper.create({
 		console.log("Starting nodehelper: " + this.name);
 		try {
 			admin.initializeApp({
-				credential: admin.credential.cert(serviceAccount)
-			});
+				credential: admin.credential.cert(serviceAccount),
+				databaseURL: "https://scheduler-app-df3b5-default-rtdb.asia-southeast1.firebasedatabase.app"
+			  });
+		    db = admin.database();
 		}  catch(error) {
 		}
-		db = firestore.getFirestore();
 	},
 
 	socketNotificationReceived: function(notification, payload) {
@@ -28,17 +28,41 @@ module.exports = NodeHelper.create({
 
 	getSchedule: async function() {
 		let self = this;
-		var schedule = Array();
-        var date = Array();
-		var i = 0;
+		var title = Array();
+		var date = Array();
+		var startTime = Array();
+		
+		var i=0;
 
-		db.collection("Calendar").get().then((result) => {
-			result.forEach((doc) => {
-				schedule[i] = doc.data().schedule;
-                date[i] = doc.data().day;
-				i++;
-			});
-			self.sendSocketNotification("SCHEDULE", schedule);
-		});
+		var ref = db.ref("CalendarList");
+		ref.on('value', function(snapshot) {
+			var val = snapshot.val();
+			var key = Object.keys(val);
+			var value = Object.values(val);
+
+			for(var k=0; k<key.length; k++) {
+				var length = value[k].length;
+				for(var j=0; j<length; j++) {
+					if(value[k][j] != null) {
+						title[i] = value[k][j].data.title;
+						date[i] = value[k][j].data.date;
+						startTime[i] = value[k][j].data.startTime;
+						i++;
+					}
+				}
+			}
+		});		
+
+		self.sendSocketNotification("SCHEDULE", 
+			{
+				"title": title,
+				"date": date,
+				"value": value
+			}	
+		);
 	},
+
+	stop: function() {
+		db.ref("CalendarList").off();
+	}
 });
