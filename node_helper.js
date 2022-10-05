@@ -55,9 +55,9 @@ module.exports = NodeHelper.create({
 
 		self.sendSocketNotification("SCHEDULE", 
 			{
-				"title": title,
-				"date": date,
-				"value": value
+				"Title": title,
+				"Date": date,
+				"Value": value
 			}	
 		);
 	},
