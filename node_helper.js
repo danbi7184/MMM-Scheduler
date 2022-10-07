@@ -48,13 +48,15 @@ module.exports = NodeHelper.create({
 						title[i] = value[k][j].data.title;
 						date[i] = value[k][j].data.date;
 						startTime[i] = value[k][j].data.startTime;
+						console.log(title[i]);
+						console.log(date[i]);
+						console.log(startTime[i]);
 						i++;
 					}
 				}
 			  }
 		});		
 
-		console.log(title[2]);
 		self.sendSocketNotification("SCHEDULE", 
 			{
 				"title": title,
