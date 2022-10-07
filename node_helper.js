@@ -4,6 +4,9 @@ const admin = require("firebase-admin");
 const serviceAccount = require("./ServiceAccount.json");
 
 var db;
+var title = Array();
+var date = Array();
+var startTime = Array();
 
 module.exports = NodeHelper.create({
 	start: function() {
@@ -34,10 +37,6 @@ module.exports = NodeHelper.create({
 			var val = snapshot.val();
 			var key = Object.keys(val);
 			var value = Object.values(val);
-
-			var title = Array();
-			var date = Array();
-			var startTime = Array();
 			
 			var i=0;
 
@@ -48,9 +47,6 @@ module.exports = NodeHelper.create({
 						title[i] = value[k][j].data.title;
 						date[i] = value[k][j].data.date;
 						startTime[i] = value[k][j].data.startTime;
-						console.log(title[i]);
-						console.log(date[i]);
-						console.log(startTime[i]);
 						i++;
 					}
 				}
