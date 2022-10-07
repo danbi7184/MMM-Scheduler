@@ -111,7 +111,7 @@ getDom: function() {
 				squareContent.className = "square-content";
 				var squareContentInner = document.createElement("div");
 				var innerSpan = document.createElement("span");
-				var content = document.createElement("div");
+				var content = document.createElement("span");
 
 				if (j < startingDay && i == 0) {
 					//첫 번째 행, 빈 슬롯 채우기
