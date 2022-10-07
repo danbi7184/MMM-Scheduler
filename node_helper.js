@@ -57,7 +57,7 @@ module.exports = NodeHelper.create({
 			{
 				"title": title,
 				"date": date,
-				"value": value
+				"startTime": startTime
 			}	
 		);
 	},
