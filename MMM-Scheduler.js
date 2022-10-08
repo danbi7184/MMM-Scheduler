@@ -236,5 +236,5 @@ Module.register("MMM-Scheduler", {
 				this.updateDom();
 				break;
 		}
-	}.
+	},
 });
