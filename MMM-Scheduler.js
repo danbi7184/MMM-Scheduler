@@ -6,12 +6,8 @@ Module.register("MMM-Scheduler", {
 	},
 
 	getStyles: function() {
-		return [this.data.path + "/css/MMM-Scheduler.css", this.getThemeCss()];
+		return [this.data.path + "/css/MMM-Scheduler.css"];
 	},
-
-	getThemeCss: function() {
-		return "/css/MMM-Scheduler2.css";
-	},	
 		
 	getScripts: function() {
 		return ["moment.js"];
