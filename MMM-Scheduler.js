@@ -17,7 +17,7 @@ Module.register("MMM-Scheduler", {
 		return ["moment.js"];
 	},
 
-	start: function() {
+		start: function() {
 		Log.log("Starting module: " + this.name);
 		this.titleList = [];
 		this.dateList = [];
@@ -36,16 +36,7 @@ Module.register("MMM-Scheduler", {
 	},
 
 	getDom: function() {
-		var wrapper = document.createElement("table");
-		wrapper.className = 'xsmall';
-		wrapper.id = 'calendar-table';
-
-		if(!this.loaded) {
-			return wrapper;
-		}
-
-		if ((moment() > this.midnight) || (this.loaded)) {
-
+		if ((moment() > this.midnight) || (!this.loaded)) {
 			var month = moment().month();
 			var year = moment().year();
 			var monthName = moment().format("MMMM");
@@ -53,6 +44,10 @@ Module.register("MMM-Scheduler", {
 			
 			// locale을 통해 해당 월의 첫 번째 날 탐색
 			var startingDay = moment().date(1).weekday();
+
+			var wrapper = document.createElement("table");
+			wrapper.className = 'xsmall';
+			wrapper.id = 'calendar-table';
 
 			// 월 이름과 4자리 연도를 사용하여 THEAD 섹션 생성
 			var header = document.createElement("tHead");
@@ -172,7 +167,6 @@ Module.register("MMM-Scheduler", {
 			return wrapper;
 
 		}
-
 	},
 
 	scheduleUpdate: function(delay) {
@@ -201,7 +195,7 @@ Module.register("MMM-Scheduler", {
 
 	},
 
-	/* reloadDom: function() {
+	reloadDom: function() {
 		if (this.config.debugging) {
 			Log.log("          Calling reloadDom()!");
 		}
@@ -214,7 +208,7 @@ Module.register("MMM-Scheduler", {
 
 		var nextRefresh = moment([now.year(), now.month(), now.date(), now.hour() + 1]);
 		this.scheduleUpdate(nextRefresh);
-	}, */
+	}, 
 
 	getScheduleList: function() {
 		Log.info("Requesting schedule");
