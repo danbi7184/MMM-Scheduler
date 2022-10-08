@@ -111,7 +111,7 @@ getDom: function() {
 				squareContent.className = "square-content";
 				var squareContentInner = document.createElement("div");
 				var innerSpan = document.createElement("span");
-				var content = document.createElement("span");
+				var content = document.createElement("div");
 
 				if (j < startingDay && i == 0) {
 					//첫 번째 행, 빈 슬롯 채우기
@@ -197,7 +197,7 @@ scheduleUpdate: function(delay) {
 
 },
 
-reloadDom: function() {
+/* reloadDom: function() {
 	if (this.config.debugging) {
 		Log.log("          Calling reloadDom()!");
 	}
@@ -210,7 +210,7 @@ reloadDom: function() {
 
 	var nextRefresh = moment([now.year(), now.month(), now.date(), now.hour() + 1]);
 	this.scheduleUpdate(nextRefresh);
-},
+}, */
 
 getScheduleList: function() {
 	Log.info("Requesting schedule");
