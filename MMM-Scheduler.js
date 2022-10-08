@@ -1,5 +1,5 @@
 Module.register("MMM-Scheduler", {
-	requiresVersion: "2.2.0",
+requiresVersion: "2.12.0",
 defaults: {
 	initialLoadDelay:	0,		
 	updateDelay:		5,
