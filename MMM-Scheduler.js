@@ -17,7 +17,7 @@ Module.register("MMM-Scheduler", {
 		return ["moment.js"];
 	},
 
-		start: function() {
+	start: function() {
 		Log.log("Starting module: " + this.name);
 		this.titleList = [];
 		this.dateList = [];
@@ -53,25 +53,25 @@ Module.register("MMM-Scheduler", {
 			var header = document.createElement("tHead");
 			var headerTR = document.createElement("tr");
 			
-				//THEAD 섹션 채우기
-				var headerTH = document.createElement("th");
-				headerTH.colSpan = "7";
-				headerTH.scope = "col";
-				headerTH.id = "calendar-th";
-				var headerYearSpan = document.createElement("span");
-				headerYearSpan.id = "yearDigits";
-				headerYearSpan.innerHTML = year + "년";
-				var headerMonthSpan = document.createElement("span");
-				headerMonthSpan.id = "monthName";
-				headerMonthSpan.innerHTML = monthName;				
-				// Add space between the two elements
-				// This can be used later with the :before or :after options in the CSS
-				var headerSpace = document.createTextNode(" ");
+			//THEAD 섹션 채우기
+			var headerTH = document.createElement("th");
+			headerTH.colSpan = "7";
+			headerTH.scope = "col";
+			headerTH.id = "calendar-th";
+			var headerYearSpan = document.createElement("span");
+			headerYearSpan.id = "yearDigits";
+			headerYearSpan.innerHTML = year + "년";
+			var headerMonthSpan = document.createElement("span");
+			headerMonthSpan.id = "monthName";
+			headerMonthSpan.innerHTML = monthName;				
+			// Add space between the two elements
+			// This can be used later with the :before or :after options in the CSS
+			var headerSpace = document.createTextNode(" ");
 
-				headerTH.appendChild(headerMonthSpan);
-				headerTH.appendChild(headerSpace);
-				headerTH.appendChild(headerYearSpan);
-				headerTR.appendChild(headerTH);
+			headerTH.appendChild(headerMonthSpan);
+			headerTH.appendChild(headerSpace);
+			headerTH.appendChild(headerYearSpan);
+			headerTR.appendChild(headerTH);
 			
 			header.appendChild(headerTR);
 			wrapper.appendChild(header);
@@ -236,6 +236,5 @@ Module.register("MMM-Scheduler", {
 				this.updateDom();
 				break;
 		}
-	}
-
+	}.
 });
