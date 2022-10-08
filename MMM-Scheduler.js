@@ -187,13 +187,13 @@ Module.register("MMM-Scheduler", {
 		}
 
 		var self = this;
-		setTimeout(function() {
+/* 		setTimeout(function() {
 			self.reloadDom();
-		}, nextReload);
+		}, nextReload); */
 
 	},
 
-	reloadDom: function() {
+/* 	reloadDom: function() {
 		if (this.config.debugging) {
 			Log.log("          Calling reloadDom()!");
 		}
@@ -206,7 +206,7 @@ Module.register("MMM-Scheduler", {
 
 		var nextRefresh = moment([now.year(), now.month(), now.date(), now.hour() + 1]);
 		this.scheduleUpdate(nextRefresh);
-	}, 
+	},  */
 
 	getScheduleList: function() {
 		Log.info("Requesting schedule");
