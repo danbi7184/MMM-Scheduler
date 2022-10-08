@@ -34,6 +34,7 @@ Module.register("MMM-Scheduler", {
 	},
 
 	getDom: function() {
+		var wrapper = document.createElement("table");
 		if(!this.loaded) {
             return wrapper;
         }
@@ -48,7 +49,6 @@ Module.register("MMM-Scheduler", {
 			// locale을 통해 해당 월의 첫 번째 날 탐색
 			var startingDay = moment().date(1).weekday();
 
-			var wrapper = document.createElement("table");
 			wrapper.className = 'xsmall';
 			wrapper.id = 'calendar-table';
 
