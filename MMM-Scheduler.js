@@ -33,7 +33,7 @@ Module.register("MMM-Scheduler", {
 		this.scheduleUpdate(this.config.initialLoadDelay * 1000);
 	},
 
-	getDom: function() {
+	getDom: () => {
 		var wrapper = document.createElement("table");
 		if(!this.loaded) {
             return wrapper;
