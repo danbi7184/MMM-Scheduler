@@ -4,9 +4,7 @@ const admin = require("firebase-admin");
 const serviceAccount = require("./ServiceAccount.json");
 
 var db;
-var title = Array();
-var date = Array();
-var startTime = Array();
+var schedule = Array();
 
 module.exports = NodeHelper.create({
 	start: function() {
@@ -42,24 +40,21 @@ module.exports = NodeHelper.create({
 
 			for(var k=0; k<key.length; k++) {
 				var length = value[k].length;
+				var object = 'object' + i;
 				for(var j=0; j<length; j++) {
 					if(value[k][j] != null) {
-						title[i] = value[k][j].data.title;
-						date[i] = value[k][j].data.date;
-						startTime[i] = value[k][j].data.startTime;
+						var object = {};
+						object['title'] = value[k][j].data.title;
+						object['date'] = value[k][j].data.date;
+						object['startTime'] = value[k][j].data.startTime;
+						schedule[i] = object;
 						i++;
 					}
 				}
-			  }
+			}
 		});		
 
-		self.sendSocketNotification("SCHEDULE", 
-			{
-				title: title,
-				date: date,
-				startTime: startTime
-			}	
-		);
+		self.sendSocketNotification("SCHEDULE", schedule);
 	},
 
 	stop: function() {

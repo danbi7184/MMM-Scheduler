@@ -1,8 +1,8 @@
 Module.register("MMM-Scheduler", {
 	requiresVersion: "2.12.0",
 	defaults: {
-		initialLoadDelay:	0,		
-		updateDelay:		5,
+		initialLoadDelay: 0,		
+		updateDelay: 5,
 	},
 
 	getStyles: function() {
@@ -10,7 +10,7 @@ Module.register("MMM-Scheduler", {
 	},
 
 	getThemeCss: function() {
-			return "/css/MMM-Scheduler2.css";
+		return "/css/MMM-Scheduler2.css";
 	},	
 		
 	getScripts: function() {
@@ -19,9 +19,7 @@ Module.register("MMM-Scheduler", {
 
 	start: function() {
 		Log.log("Starting module: " + this.name);
-		this.titleList = [];
-		this.dateList = [];
-		this.startTimeList = [];
+		this.schedule = [];
 
 		// 지역 설정
 		moment.locale(config.language);
@@ -37,6 +35,8 @@ Module.register("MMM-Scheduler", {
 
 	getDom: function() {
 		if ((moment() > this.midnight) || (!this.loaded)) {
+			var schedule = this.schedule;
+
 			var month = moment().month();
 			var year = moment().year();
 			var monthName = moment().format("MMMM");
@@ -134,7 +134,7 @@ Module.register("MMM-Scheduler", {
 						else
 							var zeroDay = day; 
 						var date = year + '-' + zeroMonth + '-' + zeroDay;
-						content.innerHTML = this.titleList[0];
+						content.innerHTML = schedule[0].title;
 						day++;
 					} else if (day > monthLength && i > 0) {
 						// 마지막 행, 빈 공간 채우기
@@ -229,10 +229,9 @@ Module.register("MMM-Scheduler", {
 	socketNotificationReceived: function(notification, payload) {
 		switch (notification) {
 			case "SCHEDULE":
+				this.loaded = true;
 				console.log("NotificationReceived:" + notification);
-				this.titleList = payload.title;
-				this.dateList = payload.date;
-				this.startTimeList = payload.startTime;
+				this.schedule = payload;
 				this.updateDom();
 				break;
 		}
