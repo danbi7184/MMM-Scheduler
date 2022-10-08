@@ -34,6 +34,12 @@ Module.register("MMM-Scheduler", {
 	},
 
 	getDom: function() {
+		var wrapper = document.createElement("table");
+		wrapper.className = 'xsmall';
+		wrapper.id = 'calendar-table';
+		if(!this.loaded) {
+            return wrapper;
+        }
 		if ((moment() > this.midnight) || (!this.loaded)) {
 			var schedule = this.schedule;
 
@@ -44,10 +50,6 @@ Module.register("MMM-Scheduler", {
 			
 			// locale을 통해 해당 월의 첫 번째 날 탐색
 			var startingDay = moment().date(1).weekday();
-
-			var wrapper = document.createElement("table");
-			wrapper.className = 'xsmall';
-			wrapper.id = 'calendar-table';
 
 			// 월 이름과 4자리 연도를 사용하여 THEAD 섹션 생성
 			var header = document.createElement("tHead");
@@ -165,7 +167,6 @@ Module.register("MMM-Scheduler", {
 
 			this.loaded = true;
 			return wrapper;
-
 		}
 	},
 
