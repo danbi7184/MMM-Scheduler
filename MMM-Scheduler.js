@@ -231,9 +231,9 @@ Module.register("MMM-Scheduler", {
 	socketNotificationReceived: function(notification, payload) {
 		switch (notification) {
 			case "SCHEDULE":
-				this.loaded = true;
 				console.log("NotificationReceived:" + notification);
 				this.schedule = payload;
+				this.loaded = true;
 				this.updateDom();
 				break;
 		}
