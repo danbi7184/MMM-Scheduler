@@ -127,7 +127,7 @@ Module.register("MMM-Scheduler", {
 					innerSpan.innerHTML = day;
 					
 					if(month < 10) 
-						var zeroMonth = '0' + (month.toInt() + 1);
+						var zeroMonth = '0' + month.toInt() + 1;
 					else 
 						var zeroMonth = month.toInt() + 1;
 					if(day < 10)
