@@ -110,6 +110,7 @@ Module.register("MMM-Scheduler", {
 				squareContent.className = "square-content";
 				var squareContentInner = document.createElement("div");
 				var innerSpan = document.createElement("span");
+				var time = document.createElement("div");
 				var content = document.createElement("div");
 
 				if (j < startingDay && i == 0) {
@@ -138,7 +139,8 @@ Module.register("MMM-Scheduler", {
 					
 					for(var k=0; k<schedule.length; k++) {
 						if(schedule[k].date === date) {
-							content.innerHTML = schedule[k].startTime + schedule[k].title;
+							time.innerHTML = schedule[k].startTime;
+							content.innerHTML = schedule[k].title;
 							break;
 						} else {
 							content.innerHTML = ' ';
@@ -153,6 +155,7 @@ Module.register("MMM-Scheduler", {
 				}
 				squareContentInner.appendChild(innerSpan);
 				squareContent.appendChild(squareContentInner);
+				squareContent.appendChild(time);
 				squareContent.appendChild(content);
 				squareDiv.appendChild(squareContent);
 				bodyTD.appendChild(squareDiv);	
