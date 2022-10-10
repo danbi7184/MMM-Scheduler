@@ -140,7 +140,7 @@ Module.register("MMM-Scheduler", {
 					for(var k=0; k<schedule.length; k++) {
 						if(schedule[k].date === date) {
 							time.innerHTML = schedule[k].startTime;
-							time.id = 'time';
+							time.className = 'time';
 							content.innerHTML = schedule[k].title;
 							break;
 						} else {
