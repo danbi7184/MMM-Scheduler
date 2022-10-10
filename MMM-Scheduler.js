@@ -134,8 +134,8 @@ Module.register("MMM-Scheduler", {
 					nextMonth++;
 				}
 				squareContentInner.appendChild(innerSpan);
-				squareContentInner.appendChild(content);
 				squareContent.appendChild(squareContentInner);
+				squareContent.appendChild(content);
 				squareDiv.appendChild(squareContent);
 				bodyTD.appendChild(squareDiv);	
 				bodyTR.appendChild(bodyTD);
