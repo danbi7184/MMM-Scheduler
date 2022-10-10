@@ -138,12 +138,11 @@ Module.register("MMM-Scheduler", {
 					
 					for(var k=0; k<schedule.length; k++) {
 						if(schedule[k].date == date) {
-							content = schedule[k].title;
+							content.innerHTML = schedule[k].title;
 						} else {
-							content = ' ';
+							content.innerHTML = ' ';
 						}
 					}
-					content.innerHTML = date;
 					day++;
 				} else if (day > monthLength && i > 0) {
 					// 마지막 행, 빈 공간 채우기
