@@ -125,7 +125,18 @@ Module.register("MMM-Scheduler", {
 						innerSpan.className = "daily";
 					}
 					innerSpan.innerHTML = day;
-					content.innerHTML = schedule[0].title;
+					
+					if(month < 10) 
+						var zeroMonth = '0' + month;
+					else 
+						var zeroMonth = month;
+					if(day < 10)
+						var zeroDay = '0' + day;
+					else
+						var zeroDay = day; 
+					var date = year + '-' + zeroMonth + '-' + zeroDay;
+
+					content.innerHTML = date;
 					day++;
 				} else if (day > monthLength && i > 0) {
 					// 마지막 행, 빈 공간 채우기
