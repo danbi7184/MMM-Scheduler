@@ -125,7 +125,6 @@ Module.register("MMM-Scheduler", {
 							innerSpan.className = "daily";
 						}
 						innerSpan.innerHTML = day;
-						content.innerHTML = schedule[i].title;
 						day++;
 					} else if (day > monthLength && i > 0) {
 						// 마지막 행, 빈 공간 채우기
