@@ -110,6 +110,7 @@ Module.register("MMM-Scheduler", {
 				squareContent.className = "square-content";
 				var squareContentInner = document.createElement("div");
 				var innerSpan = document.createElement("span");
+				var content = document.createElement("div");
 
 				if (j < startingDay && i == 0) {
 					//첫 번째 행, 빈 슬롯 채우기
@@ -124,6 +125,7 @@ Module.register("MMM-Scheduler", {
 						innerSpan.className = "daily";
 					}
 					innerSpan.innerHTML = day;
+					content.innerHTML = schedule[0].title;
 					day++;
 				} else if (day > monthLength && i > 0) {
 					// 마지막 행, 빈 공간 채우기
@@ -132,6 +134,7 @@ Module.register("MMM-Scheduler", {
 					nextMonth++;
 				}
 				squareContentInner.appendChild(innerSpan);
+				squareContentInner.appendChild(content);
 				squareContent.appendChild(squareContentInner);
 				squareDiv.appendChild(squareContent);
 				bodyTD.appendChild(squareDiv);	
