@@ -135,7 +135,14 @@ Module.register("MMM-Scheduler", {
 					else
 						var zeroDay = day; 
 					var date = year + '-' + zeroMonth + '-' + zeroDay;
-
+					
+					for(var k=0; k<schedule.length; k++) {
+						if(schedule[k].date == date) {
+							content = schedule[k].title;
+						} else {
+							content = ' ';
+						}
+					}
 					content.innerHTML = date;
 					day++;
 				} else if (day > monthLength && i > 0) {
