@@ -137,12 +137,11 @@ Module.register("MMM-Scheduler", {
 					var date = year + '-' + zeroMonth + '-' + zeroDay;
 					
 					for(var k=0; k<schedule.length; k++) {
-						if(schedule[k].date == date) {
+						if(schedule[k].date === date) {
 							content.innerHTML = schedule[k].title;
 						} else {
 							content.innerHTML = ' ';
 						}
-						content.innerHTML = schedule[1].date;
 					}
 					day++;
 				} else if (day > monthLength && i > 0) {
