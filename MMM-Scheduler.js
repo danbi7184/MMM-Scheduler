@@ -143,6 +143,7 @@ Module.register("MMM-Scheduler", {
 							content.innerHTML = schedule[k].title;
 							break;
 						} else {
+							time.innerHTML = ' ';
 							content.innerHTML = ' ';
 						}
 					}
