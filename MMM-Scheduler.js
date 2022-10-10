@@ -142,6 +142,7 @@ Module.register("MMM-Scheduler", {
 						} else {
 							content.innerHTML = ' ';
 						}
+						content.innerHTML = date;
 					}
 					day++;
 				} else if (day > monthLength && i > 0) {
