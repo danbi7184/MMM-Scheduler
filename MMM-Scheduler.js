@@ -1,251 +1,158 @@
-/* Magic Mirror Module: calendar_monthly
- * v1.0 - June 2016
- *
- * By Ashley M. Kirchner <kirash4@gmail.com>
- * Beer Licensed (meaning, if you like this module, feel free to have a beer on me, or send me one.)
- */
-
 Module.register("MMM-Scheduler", {
-	requireVersion: "2.12.0",
-
-	// Module defaults
+	requiresVersion: "2.2.0",
 	defaults: {
-		debugging:		false,
-		initialLoadDelay:	0,		// How many seconds to wait on a fresh start up.
-							// This is to prevent collision with all other modules also
-							// loading all at the same time. This only happens once,
-							// when the mirror first starts up.
-		fadeSpeed:		2,		// How fast (in seconds) to fade out and in during a midnight refresh
-		showHeader:		true,		// Show the month and year at the top of the calendar
-		cssStyle:		"block",	// which CSS style to use, 'block', 'slate', or 'custom'
-		updateDelay:		5,		// How many seconds after midnight before a refresh
-							// This is to prevent collision with other modules refreshing
-							// at the same time.
+		initialLoadDelay:	0,		
+		updateDelay:		5,
 	},
 
-	// Required styles
 	getStyles: function() {
-		return [this.data.path + "/css/NMM-Scheduler.css", this.getThemeCss()];
+		return [this.data.path + "/css/MMM-Scheduler.css", this.getThemeCss()];
 	},
 
 	getThemeCss: function() {
-		return "/css/MMM-Scheduler2.css";
-	},
-
-	// Required scripts
+			return "/css/MMM-Scheduler2.css";
+	},	
+		
 	getScripts: function() {
 		return ["moment.js"];
 	},
 
-	// Override start method
 	start: function() {
 		Log.log("Starting module: " + this.name);
-		// Set locale
+		// 지역 설정
 		moment.locale(config.language);
 		
-		// Calculate next midnight and add updateDelay
+		// 다음 자정을 계산, updateDelay를 추가
 		var now = moment();
-		this.midnight = moment([now.year(), now.month(), now.date() + 1]).add(this.config.updateDelay, "seconds");
-		
+		this.midnight = moment([now.year(), now.month(), now.date() + 1]).add(5, "seconds");
+
 		this.schedule = [];
 		this.loaded = false;
-
-		this.scheduleUpdate(this.config.initialLoadDelay * 1000);
 	},
 
-	// Override dom generator
 	getDom: function() {
+		var wrapper = document.createElement("table");
+		wrapper.className = 'xsmall';
+		wrapper.id = 'calendar-table';
 
-		if ((moment() > this.midnight) || (!this.loaded)) {
+		if(!this.loaded) {
+			return wrapper;
+		}
 
-			var month = moment().month();
-			var year = moment().year();
-			var monthName = moment().format("MMMM");
-			var monthLength = moment().daysInMonth();
+		var schedule = this.schedule;
 
-			// Find first day of the month, LOCALE aware
-			var startingDay = moment().date(1).weekday();
+		var month = moment().month();
+		var year = moment().year();
+		var monthName = moment().format("MMMM");
+		var monthLength = moment().daysInMonth();
+		
+		// locale을 통해 해당 월의 첫 번째 날 탐색
+		var startingDay = moment().date(1).weekday();
 
-			var wrapper = document.createElement("table");
-			wrapper.className = 'xsmall';
-			wrapper.id = 'calendar-table';
+		// 월 이름과 4자리 연도를 사용하여 THEAD 섹션 생성
+		var header = document.createElement("tHead");
+		var headerTR = document.createElement("tr");
+		
+		//THEAD 섹션 채우기
+		var headerTH = document.createElement("th");
+		headerTH.colSpan = "7";
+		headerTH.scope = "col";
+		headerTH.id = "calendar-th";
+		var headerYearSpan = document.createElement("span");
+		headerYearSpan.id = "yearDigits";
+		headerYearSpan.innerHTML = year + "년";
+		var headerMonthSpan = document.createElement("span");
+		headerMonthSpan.id = "monthName";
+		headerMonthSpan.innerHTML = monthName;				
+		// Add space between the two elements
+		// This can be used later with the :before or :after options in the CSS
+		var headerSpace = document.createTextNode(" ");
 
-			// Create THEAD section with month name and 4-digit year
-			var header = document.createElement("tHead");
-			var headerTR = document.createElement("tr");
+		headerTH.appendChild(headerMonthSpan);
+		headerTH.appendChild(headerSpace);
+		headerTH.appendChild(headerYearSpan);
+		headerTR.appendChild(headerTH);
+		
+		header.appendChild(headerTR);
+		wrapper.appendChild(header);
+		
+		// 요일 이름으로 TBODY 섹션 생성
+		var bodyContent = document.createElement("tBody");
+		var bodyTR = document.createElement("tr");
+		bodyTR.id = "calendar-header";
 
-			// We only fill in the THEAD section if the .showHeader config is set to true
-			if (this.config.showHeader) {
-				var headerTH = document.createElement("th");
-				headerTH.colSpan = "7";
-				headerTH.scope = "col";
-				headerTH.id = "calendar-th";
-				var headerMonthSpan = document.createElement("span");
-				headerMonthSpan.id = "monthName";
-				headerMonthSpan.innerHTML = monthName;
-				var headerYearSpan = document.createElement("span");
-				headerYearSpan.id = "yearDigits";
-				headerYearSpan.innerHTML = year;
-				// Add space between the two elements
-				// This can be used later with the :before or :after options in the CSS
-				var headerSpace = document.createTextNode(" ");
+		for (var i = 0; i <= 6; i++ ){
+			var bodyTD = document.createElement("td");
+			bodyTD.className = "calendar-header-day";
+			bodyTD.innerHTML = moment().weekday(i).format("ddd");
+			bodyTR.appendChild(bodyTD);
+		}
+		bodyContent.appendChild(bodyTR);
+		wrapper.appendChild(bodyContent);
 
-				headerTH.appendChild(headerMonthSpan);
-				headerTH.appendChild(headerSpace);
-				headerTH.appendChild(headerYearSpan);
-				headerTR.appendChild(headerTH);
-			}
-			header.appendChild(headerTR);
-			wrapper.appendChild(header);
+		// 월간 달력으로 TBODY 섹션 생성
+		var bodyContent = document.createElement("tBody");
+		var bodyTR = document.createElement("tr");
+		bodyTR.className = "weekRow";
 
-			// Create TFOOT section -- currently used for debugging only
-			var footer = document.createElement('tFoot');
-			var footerTR = document.createElement("tr");
-			footerTR.id = "calendar-tf";
-
-			var footerTD = document.createElement("td");
-			footerTD.colSpan ="7";
-			footerTD.className = "footer";
-			if (this.config.debugging) {
-				footerTD.innerHTML = "Calendar currently in DEBUG mode!<br />Please see console log.";
-			} else {
-				footerTD.innerHTML = "&nbsp;";
-			}
-
-			footerTR.appendChild(footerTD);
-			footer.appendChild(footerTR);
-			wrapper.appendChild(footer);
-
-			// Create TBODY section with day names
-			var bodyContent = document.createElement("tBody");
-			var bodyTR = document.createElement("tr");
-			bodyTR.id = "calendar-header";
-
-			for (var i = 0; i <= 6; i++ ){
+		// 날짜 채우기
+		var day = 1;
+		var nextMonth = 1;
+		// 몇 주 동안 반복
+		for (var i = 0; i < 9; i++) {
+			// 각 요일에 대한 반복
+			for (var j = 0; j <= 6; j++) {
 				var bodyTD = document.createElement("td");
-				bodyTD.className = "calendar-header-day";
-				bodyTD.innerHTML = moment().weekday(i).format("ddd");
+				bodyTD.className = "calendar-day";
+				var squareDiv = document.createElement("div");
+				squareDiv.className = "square-box";
+				var squareContent = document.createElement("div");
+				squareContent.className = "square-content";
+				var squareContentInner = document.createElement("div");
+				var innerSpan = document.createElement("span");
+
+				if (j < startingDay && i == 0) {
+					//첫 번째 행, 빈 슬롯 채우기
+					innerSpan.className = "monthPrev";
+					innerSpan.innerHTML = moment().subtract(1, 'months').endOf('month').subtract((startingDay - 1) - j, 'days').date();
+				} else if (day <= monthLength && (i > 0 || j >= startingDay)) {
+					if (day == moment().date()) {
+						innerSpan.id = "day" + day;
+						innerSpan.className = "today";
+					} else {
+						innerSpan.id = "day" + day;
+						innerSpan.className = "daily";
+					}
+					innerSpan.innerHTML = day;
+					day++;
+				} else if (day > monthLength && i > 0) {
+					// 마지막 행, 빈 공간 채우기
+					innerSpan.className = "monthNext";
+					innerSpan.innerHTML = moment([year, month, monthLength]).add(nextMonth, 'days').date();
+					nextMonth++;
+				}
+				squareContentInner.appendChild(innerSpan);
+				squareContent.appendChild(squareContentInner);
+				squareDiv.appendChild(squareContent);
+				bodyTD.appendChild(squareDiv);	
 				bodyTR.appendChild(bodyTD);
 			}
-			bodyContent.appendChild(bodyTR);
-			wrapper.appendChild(bodyContent);
-
-			// Create TBODY section with the monthly calendar
-			var bodyContent = document.createElement("tBody");
-			var bodyTR = document.createElement("tr");
-			bodyTR.className = "weekRow";
-
-			// Fill in the days
-			var day = 1;
-			var nextMonth = 1;
-			// Loop for amount of weeks (as rows)
-			for (var i = 0; i < 9; i++) {
-				// Loop for each weekday (as individual cells)
-				for (var j = 0; j <= 6; j++) {
-					var bodyTD = document.createElement("td");
-					bodyTD.className = "calendar-day";
-					var squareDiv = document.createElement("div");
-					squareDiv.className = "square-box";
-					var squareContent = document.createElement("div");
-					squareContent.className = "square-content";
-					var squareContentInner = document.createElement("div");
-					var innerSpan = document.createElement("span");
-
-					if (j < startingDay && i == 0) {
-						// First row, fill in empty slots
-						innerSpan.className = "monthPrev";
-						innerSpan.innerHTML = moment().subtract(1, 'months').endOf('month').subtract((startingDay - 1) - j, 'days').date();
-					} else if (day <= monthLength && (i > 0 || j >= startingDay)) {
-						if (day == moment().date()) {
-							innerSpan.id = "day" + day;
-							innerSpan.className = "today";
-						} else {
-							innerSpan.id = "day" + day;
-							innerSpan.className = "daily";
-						}
-						innerSpan.innerHTML = day;
-						day++;
-					} else if (day > monthLength && i > 0) {
-						// Last row, fill in empty space
-						innerSpan.className = "monthNext";
-						innerSpan.innerHTML = moment([year, month, monthLength]).add(nextMonth, 'days').date();
-						nextMonth++;
-					}
-					squareContentInner.appendChild(innerSpan);
-					squareContent.appendChild(squareContentInner);
-					squareDiv.appendChild(squareContent);
-					bodyTD.appendChild(squareDiv);	
-					bodyTR.appendChild(bodyTD);
-				}
-				// Don't need any more rows if we've run out of days
-				if (day > monthLength) {
-					break;
-				} else {
-					bodyTR.appendChild(bodyTD);
-					bodyContent.appendChild(bodyTR);
-					var bodyTR = document.createElement("tr");
-					bodyTR.className = "weekRow";
-				}
-			}	
-
-			bodyContent.appendChild(bodyTR);
-			wrapper.appendChild(bodyContent);
-
-			this.loaded = true;
-			return wrapper;
-
-		}
-
-	},
-
-	scheduleUpdate: function(delay) {
-		if (this.config.debugging) {
-			Log.log("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =");
-			Log.log("CALENDAR_MONTHLY IS IN DEBUG MODE!");
-			Log.log("Remove 'debugging' option from config/config.js to disable.");
-			Log.log("             Current moment(): " + moment() + " (" + moment().format("hh:mm:ss a") + ")");
-			Log.log("scheduleUpdate() delay set at: " + delay);
-		}
-
-		if (typeof delay !== "undefined" && delay >= 0) {
-			nextReload = delay;
-		}
-
-		if (delay > 0) {
-			// Calculate the time DIFFERENCE to that next reload!
-			nextReload = moment.duration(nextReload.diff(moment(), "milliseconds"));
-			if (this.config.debugging) {
-				var hours = Math.floor(nextReload.asHours());
-				var  mins = Math.floor(nextReload.asMinutes()) - hours * 60;
-				var  secs = Math.floor(nextReload.asSeconds()) - ((hours * 3600 ) + (mins * 60));
-				Log.log("  nextReload should happen at: " + delay + " (" + moment(delay).format("hh:mm:ss a") + ")");
-				Log.log("                  which is in: " + mins + " minutes and " + secs + " seconds.");
-				Log.log("              midnight set at: " + this.midnight + " (" + moment(this.midnight).format("hh:mm:ss a") + ")");
-				Log.log("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =");
+			// 일수가 부족하면 더 이상 행이 필요하지 않음
+			if (day > monthLength) {
+				break;
+			} else {
+				bodyTR.appendChild(bodyTD);
+				bodyContent.appendChild(bodyTR);
+				var bodyTR = document.createElement("tr");
+				bodyTR.className = "weekRow";
 			}
-		}
+		}	
 
-		var self = this;
-		setTimeout(function() {
-			self.reloadDom();
-		}, nextReload);
-
+		bodyContent.appendChild(bodyTR);
+		wrapper.appendChild(bodyContent);
+		return wrapper;
 	},
 
-	reloadDom: function() {
-		if (this.config.debugging) {
-			Log.log("          Calling reloadDom()!");
-		}
-
-		var now = moment();
-		if (now > this.midnight) {
-			this.updateDom(this.config.fadeSpeed * 1000);
-			this.midnight = moment([now.year(), now.month(), now.date() + 1]).add(this.config.updateDelay, "seconds");
-		}
-
-		var nextRefresh = moment([now.year(), now.month(), now.date(), now.hour() + 1]);
-		this.scheduleUpdate(nextRefresh);
-	},
 	getScheduleList: function() {
 		Log.info("Requesting schedule");
 		this.sendSocketNotification("GET_SCHEDULE");
