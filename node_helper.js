@@ -36,9 +36,11 @@ module.exports = NodeHelper.create({
 			var key = Object.keys(val);
 			var value = Object.values(val);
 			var values = Array();
-			for(var j=0; j<value.length; j++) {
-				if(Object.keys(value[j])) 
-					values[j] = Object.values(value[j]);
+
+			for(var i=0; i<value.length; i++) {
+				if(Object.keys(value[i])) {
+				  values[i] = Object.values(value[i]);
+				}
 			}
 			
 			var i=0;
@@ -47,7 +49,7 @@ module.exports = NodeHelper.create({
 				var length = values[k].length;
 				var object = 'object' + i;
 				for(var j=0; j<length; j++) {
-					if(value[k][j] != null) {
+					if(values[k][j] != null) {
 						var object = {};
 						object['title'] = values[k][j].data.title;
 						object['date'] = values[k][j].data.date;
