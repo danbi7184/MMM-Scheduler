@@ -35,18 +35,23 @@ module.exports = NodeHelper.create({
 			var val = snapshot.val();
 			var key = Object.keys(val);
 			var value = Object.values(val);
+			var values = Array();
+			for(var j=0; j<value.length; j++) {
+				if(Object.keys(value[j])) 
+					values[j] = Object.values(value[j]);
+			}
 			
 			var i=0;
 
-			for(var k=0; k<key.length; k++) {
-				var length = value[k].length;
+			for(var k=0; k<values.length; k++) {
+				var length = values[k].length;
 				var object = 'object' + i;
 				for(var j=0; j<length; j++) {
 					if(value[k][j] != null) {
 						var object = {};
-						object['title'] = value[k][j].data.title;
-						object['date'] = value[k][j].data.date;
-						object['startTime'] = value[k][j].data.startTime;
+						object['title'] = values[k][j].data.title;
+						object['date'] = values[k][j].data.date;
+						object['startTime'] = values[k][j].data.startTime;
 						schedule[i] = object;
 						i++;
 					}
