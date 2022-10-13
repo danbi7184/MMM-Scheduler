@@ -148,8 +148,8 @@ Module.register("MMM-Scheduler", {
 							timeArr[k].innerHTML = schedule[k].startTime;
 							timeArr[k].className = 'time-content';
 							contentArr[k].innerHTML = schedule[k].title;
-							squareContent.appendChild(timeArr[i]);
-							squareContent.appendChild(contentArr[i]);
+							squareContent.appendChild(timeArr[k]);
+							squareContent.appendChild(contentArr[k]);
 						} 
 					}
 					day++;
