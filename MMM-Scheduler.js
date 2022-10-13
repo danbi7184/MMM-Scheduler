@@ -150,6 +150,8 @@ Module.register("MMM-Scheduler", {
 							timeArr[k].innerHTML = schedule[k].startTime;
 							timeArr[k].className = 'time-content';
 							contentArr[k].innerHTML = schedule[k].title;
+							squareContent.appendChild(timeArr[k]);
+							squareContent.appendChild(contentArr[k]);
 							break;
 						} else {
 							time.innerHTML = ' ';
@@ -165,8 +167,6 @@ Module.register("MMM-Scheduler", {
 				}
 				squareContentInner.appendChild(innerSpan);
 				squareContent.appendChild(squareContentInner);
-				squareContent.appendChild(time);
-				squareContent.appendChild(content);
 				squareDiv.appendChild(squareContent);
 				bodyTD.appendChild(squareDiv);	
 				bodyTR.appendChild(bodyTD);
