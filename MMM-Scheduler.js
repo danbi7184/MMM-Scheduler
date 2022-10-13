@@ -39,6 +39,16 @@ Module.register("MMM-Scheduler", {
 			return wrapper;
 		}
 
+		var timeArr = new Array();
+		var contentArr = new Array();
+		for(var i=0; i<schedule.length; i++) {
+			timeArr[i] = 'time' + i;
+			contentArr[i] = 'content' + i;
+
+			timeArr[i] = document.createElement("div");
+			contentArr[i] = document.createElement("div");
+		}
+
 		var schedule = this.schedule;
 
 		var month = moment().month();
@@ -110,8 +120,6 @@ Module.register("MMM-Scheduler", {
 				squareContent.className = "square-content";
 				var squareContentInner = document.createElement("div");
 				var innerSpan = document.createElement("span");
-				var time = document.createElement("div");
-				var content = document.createElement("div");
 
 				if (j < startingDay && i == 0) {
 					//첫 번째 행, 빈 슬롯 채우기
@@ -139,9 +147,9 @@ Module.register("MMM-Scheduler", {
 					
 					for(var k=0; k<schedule.length; k++) {
 						if(schedule[k].date === date) {
-							time.innerHTML = schedule[k].startTime;
-							time.className = 'time-content';
-							content.innerHTML = schedule[k].title;
+							timeArr[k].innerHTML = schedule[k].startTime;
+							timeArr[k].className = 'time-content';
+							contentArr[k].innerHTML = schedule[k].title;
 							break;
 						} else {
 							time.innerHTML = ' ';
