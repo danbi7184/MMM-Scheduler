@@ -127,6 +127,7 @@ Module.register("MMM-Scheduler", {
 						innerSpan.className = "daily";
 					}
 					innerSpan.innerHTML = day;
+					squareContentInner.appendChild(innerSpan);
 					
 					if(month + 1 < 10) 
 						var zeroMonth = '0' + (month + 1);
@@ -152,7 +153,6 @@ Module.register("MMM-Scheduler", {
 							squareContent.appendChild(contentArr[k]);
 						} 
 					}
-					squareContentInner.appendChild(innerSpan);
 					day++;
 				} else if (day > monthLength && i > 0) {
 					// 마지막 행, 빈 공간 채우기
