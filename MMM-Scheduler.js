@@ -148,6 +148,8 @@ Module.register("MMM-Scheduler", {
 							timeArr[k].innerHTML = schedule[k].startTime;
 							timeArr[k].className = 'time-content';
 							contentArr[k].innerHTML = schedule[k].title;
+							squareContent.appendChild(timeArr[i]);
+							squareContent.appendChild(contentArr[i]);
 						} 
 					}
 					day++;
@@ -158,12 +160,6 @@ Module.register("MMM-Scheduler", {
 					nextMonth++;
 				}
 				squareContentInner.appendChild(innerSpan);
-				for(var i=0; i<schedule.length; i++) {
-					if(timeArr[i] != null) {
-						squareContent.appendChild(timeArr[i]);
-						squareContent.appendChild(contentArr[i]);
-					}
-				}
 				squareContent.appendChild(squareContentInner);
 				squareDiv.appendChild(squareContent);
 				bodyTD.appendChild(squareDiv);	
