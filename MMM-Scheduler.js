@@ -110,6 +110,8 @@ Module.register("MMM-Scheduler", {
 				squareContent.className = "square-content";
 				var squareContentInner = document.createElement("div");
 				var innerSpan = document.createElement("span");
+				var time = document.createElement("div");
+				var content = document.createElement("div");
 
 				if (j < startingDay && i == 0) {
 					//첫 번째 행, 빈 슬롯 채우기
@@ -137,8 +139,6 @@ Module.register("MMM-Scheduler", {
 					
 					for(var k=0; k<schedule.length; k++) {
 						if(schedule[k].date === date) {
-							var time = document.createElement("div");
-							var content = document.createElement("div");
 							time.innerHTML = schedule[k].startTime;
 							time.className = 'time-content';
 							content.innerHTML = schedule[k].title;
