@@ -91,7 +91,7 @@
 }
 
 .square-content span {
-	display: table-cell;
+	display: table-row;
 	text-align: center;
 	vertical-align: middle;
 }
