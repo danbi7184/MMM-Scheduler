@@ -138,7 +138,7 @@ Module.register("MMM-Scheduler", {
 					var date = year + '-' + zeroMonth + '-' + zeroDay;
 					
 					for(var k=0; k<schedule.length; k++) {
-						if(schedule[k].date != date) {
+						if(schedule[k].date === date) {
 							time.innerHTML = schedule[k].startTime;
 							time.className = 'time-content';
 							content.innerHTML = schedule[k].title;
