@@ -127,7 +127,6 @@ Module.register("MMM-Scheduler", {
 						innerSpan.className = "daily";
 					}
 					innerSpan.innerHTML = day;
-					squareContentInner.appendChild(innerSpan);
 					
 					if(month + 1 < 10) 
 						var zeroMonth = '0' + (month + 1);
@@ -144,8 +143,8 @@ Module.register("MMM-Scheduler", {
 							timeArr[k] = 'time' + i;
 							contentArr[k] = 'content' + i;
 
-							timeArr[k] = document.createElement("div");
-							contentArr[k] = document.createElement("div");
+							timeArr[k] = document.createElement("span");
+							contentArr[k] = document.createElement("span");
 							timeArr[k].innerHTML = schedule[k].startTime;
 							timeArr[k].className = 'time-content';
 							contentArr[k].innerHTML = schedule[k].title;
@@ -159,8 +158,8 @@ Module.register("MMM-Scheduler", {
 					innerSpan.className = "monthNext";
 					innerSpan.innerHTML = moment([year, month, monthLength]).add(nextMonth, 'days').date();
 					nextMonth++;
-					//squareContentInner.appendChild(innerSpan);
 				}
+				squareContentInner.appendChild(innerSpan);
 				squareContent.appendChild(squareContentInner);
 				squareDiv.appendChild(squareContent);
 				bodyTD.appendChild(squareDiv);	
