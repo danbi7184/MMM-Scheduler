@@ -150,8 +150,7 @@ Module.register("MMM-Scheduler", {
 							contentArr[k].innerHTML = schedule[k].title;
 							squareContent.appendChild(timeArr[k]);
 							squareContent.appendChild(contentArr[k]);
-							break;
-						}
+						} 
 					}
 					day++;
 				} else if (day > monthLength && i > 0) {
