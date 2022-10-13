@@ -152,14 +152,15 @@ Module.register("MMM-Scheduler", {
 							squareContent.appendChild(contentArr[k]);
 						} 
 					}
+					squareContentInner.appendChild(innerSpan);
 					day++;
 				} else if (day > monthLength && i > 0) {
 					// 마지막 행, 빈 공간 채우기
 					innerSpan.className = "monthNext";
 					innerSpan.innerHTML = moment([year, month, monthLength]).add(nextMonth, 'days').date();
 					nextMonth++;
+					squareContentInner.appendChild(innerSpan);
 				}
-				squareContentInner.appendChild(innerSpan);
 				squareContent.appendChild(squareContentInner);
 				squareDiv.appendChild(squareContent);
 				bodyTD.appendChild(squareDiv);	
