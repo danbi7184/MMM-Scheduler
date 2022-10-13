@@ -91,16 +91,15 @@
 }
 
 .square-content span {
-	display: table-row;
+	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
 }
 
 .time-content {
-	display: table-cell;
-	color: rgb(255, 168, 168);
+	color: #ff0000;
 }
 
 .content-conent {
-	display: table-cell;
+	font-size: 10px;
 }
