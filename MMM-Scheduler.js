@@ -151,9 +151,6 @@ Module.register("MMM-Scheduler", {
 							squareContent.appendChild(timeArr[k]);
 							squareContent.appendChild(contentArr[k]);
 							break;
-						} else {
-							time.innerHTML = ' ';
-							content.innerHTML = ' ';
 						}
 					}
 					day++;
