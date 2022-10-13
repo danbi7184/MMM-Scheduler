@@ -127,6 +127,8 @@ Module.register("MMM-Scheduler", {
 						innerSpan.className = "daily";
 					}
 					innerSpan.innerHTML = day;
+					squareContentInner.appendChild(innerSpan);
+					squareContent.appendChild(squareContentInner);
 					
 					if(month + 1 < 10) 
 						var zeroMonth = '0' + (month + 1);
@@ -159,9 +161,9 @@ Module.register("MMM-Scheduler", {
 					innerSpan.className = "monthNext";
 					innerSpan.innerHTML = moment([year, month, monthLength]).add(nextMonth, 'days').date();
 					nextMonth++;
+					squareContentInner.appendChild(innerSpan);
+					squareContent.appendChild(squareContentInner);
 				}
-				squareContentInner.appendChild(innerSpan);
-				squareContent.appendChild(squareContentInner);
 				squareDiv.appendChild(squareContent);
 				bodyTD.appendChild(squareDiv);	
 				bodyTR.appendChild(bodyTD);
