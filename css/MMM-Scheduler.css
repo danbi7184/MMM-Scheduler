@@ -86,16 +86,15 @@
 
 .square-content div {
 	display: table;
-	width: 50px;
-	height: 50px;
+	width: 100px;
+	height: 100px;
 }
 
 .square-content span {
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
-	width: 50px;
-	height: 50px;
+	width: 100px;
 }
 
 .time-content {
