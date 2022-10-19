@@ -98,11 +98,11 @@
 }
 
 .time-content {
-	float: left;
+	display: inline;
 	margin-top: 10px;
 	color: #ff0000;
 }
 
 .content-content {
-
+	display: inline;
 }
