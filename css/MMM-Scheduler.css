@@ -66,7 +66,7 @@
 .square-box:before {
 	content: "";
 	display: block;
-	padding-top: 0%;
+	padding-top: 20%;
 }
 
 .square-content {
