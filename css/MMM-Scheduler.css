@@ -99,14 +99,13 @@
 
 .complex {
 	display: flex;
+	justify-content: flex-end;
 }
 
 .time-content {
-	display: inline;
 	margin-top: 10px;
 	color: #ff0000;
 }
 
 .content-content {
-	display: inline;
 }
