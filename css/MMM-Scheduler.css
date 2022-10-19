@@ -58,7 +58,8 @@
 
 .square-box {
 	position: relative;
-	width: 100%;
+	width: 128px;
+	height: 200px;
 	overflow: hidden;
 	margin: 0px auto;
 }
