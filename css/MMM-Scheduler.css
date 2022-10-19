@@ -58,8 +58,8 @@
 
 .square-box {
 	position: relative;
-	width: 128px;
-	height: 150px;
+	width: 90%;
+	height: 128px;
 	overflow: hidden;
 	margin: 0px auto;
 }
@@ -87,7 +87,7 @@
 
 .square-content div {
 	display: table;
-	width: 90%;
+	width: 100%;
 	height: 100%;
 }
 
