@@ -156,8 +156,8 @@ Module.register("MMM-Scheduler", {
 							contentArr[k].innerHTML = schedule[k].title;
 							contentArr[k].className = 'content-content';
 
-							contentArr[k].appendChild(timeArr[k]);
-							contentArr[k].appendChild(contentArr[k]);
+							complexArr[k].appendChild(timeArr[k]);
+							complexArr[k].appendChild(contentArr[k]);
 							squareContent.appendChild(complexArr[k]);
 						} 
 					}
