@@ -41,6 +41,7 @@ Module.register("MMM-Scheduler", {
 
 		var timeArr = new Array();
 		var contentArr = new Array();
+		var complexArr = new Array();
 
 		var schedule = this.schedule;
 
@@ -154,7 +155,7 @@ Module.register("MMM-Scheduler", {
 							timeArr[k].className = 'time-content';
 							contentArr[k].innerHTML = schedule[k].title;
 							contentArr[k].className = 'content-content';
-							
+
 							contentArr[k].appendChild(timeArr[k]);
 							contentArr[k].appendChild(contentArr[k]);
 							squareContent.appendChild(complexArr[k]);
