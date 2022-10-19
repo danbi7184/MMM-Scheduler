@@ -144,7 +144,7 @@ Module.register("MMM-Scheduler", {
 						if(schedule[k].date === date) {
 							timeArr[k] = 'time' + i;
 							contentArr[k] = 'content' + i;
-z
+
 							timeArr[k] = document.createElement("div");
 							contentArr[k] = document.createElement("div");
 							timeArr[k].innerHTML = schedule[k].startTime;
