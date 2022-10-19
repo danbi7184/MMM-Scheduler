@@ -58,7 +58,7 @@
 
 .square-box {
 	position: relative;
-	width: 250px;
+	width: 90%;
 	height: 128px;
 	overflow: hidden;
 	margin: 0px auto;
@@ -97,15 +97,7 @@
 	vertical-align: middle;
 }
 
-.complex {
-	display: flex;
-	justify-content: flex-end;
-}
-
 .time-content {
 	margin-top: 10px;
 	color: #ff0000;
-}
-
-.content-content {
 }
