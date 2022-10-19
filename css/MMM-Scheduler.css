@@ -58,7 +58,7 @@
 
 .square-box {
 	position: relative;
-	width: 200px;
+	width: 250px;
 	height: 128px;
 	overflow: hidden;
 	margin: 0px auto;
@@ -102,6 +102,11 @@
 }
 
 .time-content {
+	display: inline;
 	margin-top: 10px;
 	color: #ff0000;
+}
+
+.content-content {
+	display: inline;
 }
