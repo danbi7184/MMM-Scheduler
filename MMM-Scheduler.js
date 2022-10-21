@@ -41,6 +41,7 @@ Module.register("MMM-Scheduler", {
 
 		var timeArr = new Array();
 		var contentArr = new Array();
+		var Array = new Array();
 
 		var schedule = this.schedule;
 
@@ -144,15 +145,18 @@ Module.register("MMM-Scheduler", {
 						if(schedule[k].date === date) {
 							timeArr[k] = 'time' + i;
 							contentArr[k] = 'content' + i;
+							Array[k] = 'array' + i;
 
-							timeArr[k] = document.createElement("div");
-							contentArr[k] = document.createElement("div");
+							Array[k] = document.createElement("tr");
+							timeArr[k] = document.createElement("td");
+							contentArr[k] = document.createElement("td");
 							timeArr[k].innerHTML = schedule[k].startTime;
 							timeArr[k].className = 'time-content';
 							contentArr[k].innerHTML = schedule[k].title;
 							contentArr[k].className = 'content-content';
-							squareContent.appendChild(timeArr[k]);
-							squareContent.appendChild(contentArr[k]);
+							Array[k].appendChild(timeArr[k]);
+							Array[k].appendChild(contentArr[k]);
+							squareContent.appendChild(Array[k]);
 						} 
 					}
 					day++;
