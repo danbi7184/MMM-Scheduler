@@ -97,7 +97,16 @@
 	vertical-align: middle;
 }
 
+.arr-content {
+	display: table-row;
+}
+
 .time-content {
+	display: table-cell;
 	margin-top: 10px;
 	color: #ff0000;
+}
+
+.content-content {
+	display: table-cell;
 }
