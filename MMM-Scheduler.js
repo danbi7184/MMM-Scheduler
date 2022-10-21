@@ -146,7 +146,7 @@ Module.register("MMM-Scheduler", {
 							contentArr[k] = 'content' + i;
 
 							timeArr[k] = document.createElement("div");
-							contentArr[k] = document.createElement("div");
+							contentArr[k] = document.createElement("span");
 							timeArr[k].innerHTML = schedule[k].startTime;
 							timeArr[k].className = 'time-content';
 							contentArr[k].innerHTML = schedule[k].title;
